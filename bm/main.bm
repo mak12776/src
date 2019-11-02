@@ -1,0 +1,24 @@
+
+string1:
+    db "code.rest", 0
+
+string2:
+    db "Hello.rest", 0
+
+start:
+    mov     eax, string1
+    mov     ebx, string2
+
+    cmpb    [eax], [ebx]
+
+loop:
+    jne     end
+
+    cmpb    [eax], 0
+
+    inc     eax
+    inc     ebx
+
+    jmp     loop:
+
+end:

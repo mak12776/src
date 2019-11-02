@@ -1,0 +1,59 @@
+
+for register names:
+                al, ah, ax, eax, rax
+                bl, bh, bx, ebx, rbx
+                cl, ch, cx, ecx, rcx
+                dl, dh, dx, edx, rdx
+
+                sl, sh, sx, esx, rsx
+                tl, th, tx, etx, rtx
+                ul, uh, ux, eux, rux
+                vl, vh, vx, evx, rvx
+
+
+[addr32]      im8/16/32           32  8/16/32     0
+
+[r32]         im8/16/32           3   8/16/32     3   a
+
+r8            im8                 4   8           4
+r16           im16                3   16          3   a
+r32           im32                3   32          3   a
+
+
+[addr32]      r8                  32  4           4
+[addr32]      r16                 32  3           3   a
+[addr32]      r32                 32  3           3   a
+
+[r32]         r8                  3   4           7
+[r32]         r16                 3   3           6
+[r32]         r32                 3   3           6
+
+r8            r8                  4   4           0
+r16           r16                 3   3           6
+r32           r32                 3   3           6
+
+
+[addr32]      [addr32]            32  32          0
+
+[r32]         [addr32]            3   32          5
+
+r8            [addr32]            4   32          4
+r16           [addr32]            3   32          3   a
+r32           [addr32]            3   32          3   a
+
+
+for
+register names: al, ax, eax, rax
+                bl, bx, ebx, rbx
+                cl, cx, ecx, rcx
+                dl, dx, edx, rdx
+
+                sl, sx, esx, rsx
+                tl, tx, etx, rtx
+                ul, ux, eux, rux
+                vl, vx, evx, rvx
+.
+
+[addr32]      im8/16/32           32  8/16/32     0
+
+[r32]         im8/16/32           32

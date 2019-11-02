@@ -1,0 +1,166 @@
+
+    a       b       a * b
+    8       8       16
+    16      16      32
+    32      32      64
+
+    a       b       a / b
+    8       8       8
+    16      16      16
+    32      32      32
+
+    8       8       8
+    16      8       16
+    32      8       32
+    64      8       64
+
+    a       b       a % b
+    8       8       8
+    16      16      16
+    32      32      32
+    64      64      64
+
+    8       8       8
+    16      8       8
+    32      8       8
+    64      8       8
+
+
+data:
+    a large array of data about 0xFFFFFFFF
+    compare data by 1byte, 2byte, 4byte, 8byte
+
+    data pointer
+    flags
+    instruction pointer
+
+    byte compare
+
+instructions:
+    no float support
+
+    register names: al, ah, ax, eax, rax
+                    bl, bh, bx, ebx, rbx
+                    cl, ch, cx, ecx, rcx
+                    dl, dh, dx, edx, rdx
+
+                    sl, sh, sx, esx, rsx
+                    tl, th, tx, etx, rtx
+                    ul, uh, ux, eux, rux
+                    vl, vh, vx, evx, rvx
+
+                    ml, mh, mx, emx, rmx
+                    nl, nh, nx, enx, rnx
+
+a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, z
+^  ^  ^  ^  x        x           x  ^  ^           x  ^  ^  ^  ^     x
+
+
+    address size: 32bit
+
+    add     [100], [eax]
+    mov     ax, bx          -> b
+
+    [i8]    unknown     memory address
+    [r8]    unknown     memory address in register
+    i8      known       immediate
+    r8      unknown     register
+
+    mov     a, b                            ; a <- b
+    mov     r/m, r/m/i
+
+    xchg    a, b                            ; a <- b, b <- a
+    xchg    r/m, r/m
+
+    bswp    r/m 16, 32, 64
+
+    inc     a                               ; a <- a + 1
+    inc     r/m
+
+    dec     a                               ; a <- a - 1
+    dec     r/m
+
+    add     a, b                            ; a <- a + b
+    add     r/m, r/m/i
+
+    add     a, b, c                         ; a <- b + c
+    add     r/m, r/m, r/m/i
+    add     r/m, r/m/i, r/m
+
+    sub     a, b                            ; a <- a - b
+    sub     r/m, r/m/i
+
+    sub     a, b, c                         ; a <- b - c
+    sub     r/m, r/m/i, r/m
+    sub     r/m, r/m, r/m/i
+
+    mul     a, b                            ; a <- a[a.size / 2: 1] * b
+    mul     r/m 16, r/m/i 8
+
+    mul     a, b, c                         ; a <- b * c
+    mul     r/m 16, r/m 8, r/m/i 8          ; a.size = b.size * 2 = c.size * 2
+    mul     r/m 16, r/m/i 8, r/m 8
+
+    imul    a, b                            ; a <- a * b
+    imul    a, b, c                         ; a <- b * c
+
+{
+    div     a, b                            ; a <- a / b
+    div     a, b, c                         ; a <- b / c
+
+    idiv
+    idiv
+
+    mod     a, b                            ; a <- a % b
+    mod     a, b, c                         ; a <- b % c
+
+    imod
+    imod
+}
+    or
+{
+    div     a, b, c, d                      ; a <- c / d, b <- c % d
+    idiv    a, b, c, d                      ; a <- c / d, b <- c % d
+                                            ; a.size = c.size, b.size = d.size
+}
+
+    neg     a                               ; a <- -a
+
+    and     a, b                            ; a <- a & b
+
+    or      a, b                            ; a <- a | b
+
+    xor     a, b                            ; a <- a ^ b
+
+    not     a                               ; a <- ~a
+
+    shl     a, b                            ; a <- a << b
+    shr     a, b                            ; a <- a >> b
+
+    test    a, b                            ; a ? & b
+
+    cmp     a, b                            ; a ? b
+
+    jmp     addr
+
+    jz      addr
+    jnz     addr
+    jc      addr
+    jnc     addr
+    js      addr
+    jns     addr
+    jo      addr
+    jno     addr
+
+    jeq     addr
+    jne     addr
+
+    jg      addr
+    jge     addr
+    jl      addr
+    jle     addr
+
+    ja      addr
+    jae     addr
+    jb      addr
+    jbe     addr
