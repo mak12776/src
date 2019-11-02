@@ -1,8 +1,10 @@
 
 #define max(a, b) \
     ({ typeof (a) _a = (a); typeof (b) _b = (b); _a > _b ? _a : _b; })
+
 #define min(a, b) \
     ({ typeof (a) _a = (a); typeof (b) _b = (b); _a < _b ? _a : _b; })
+
 #define limit(a, min, max) \
     ({ typeof (a) _a = (a); typeof(min) _min = min; typeof(max) _max = max; \
     _a < _min ? _min : (_a > _max ? _max : _a); })

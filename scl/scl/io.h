@@ -1,52 +1,5 @@
 
 static inline
-FILE *safe_fopen(const char *name, const char *mode)
-{
-    FILE *file = fopen(name, mode);
-    if (file == NULL)
-    {
-        error = ERROR_FOPEN;
-        error_info.file_name = name;
-    }
-    return file;
-}
-
-static inline
-int safe_fseek(FILE *file, long offset, int whence)
-{
-    int result;
-
-    if (result = fseek(file, offset, whence))
-    {
-        error = ERROR_FSEEK;
-    }
-    return result;
-}
-
-static inline
-long safe_ftell(FILE *file)
-{
-    long file_size;
-
-    if ((file_size = ftell(file)) == -1)
-    {
-        error = ERROR_FTELL;
-    }
-    return file_size;
-}
-
-static inline
-size_t safe_fwrite(void *pntr, size_t size, FILE *file)
-{
-    if (fwrite(pntr, 1, size, file) != size)
-    {
-        error = ERROR_IO;
-        return 0;
-    }
-    return size;
-}
-
-static inline
 long get_file_size(FILE *file, int *error)
 {
     long file_size;

@@ -20,7 +20,7 @@
 *       SCL_SAFE
 *       SCL_CHECK_LIMITS
 *
-*       SCL_NO_TYPES
+*       SCL_NO_BUFFER
 */
 
 #ifndef SCL_SAFE
@@ -92,8 +92,12 @@
 #include "scl/io.h"
 #include "scl/str.h"
 
-#ifndef SCL_NO_TYPES
-#include "scl/types.h"
+#ifndef SCL_NO_BUFFER
+#include "scl/buffer.h"
+#endif
+
+#ifndef SCL_NO_SIO
+#include "scl/sio.h"
 #endif
 
 #undef CHAR
