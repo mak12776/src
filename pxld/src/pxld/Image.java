@@ -251,9 +251,11 @@ public class Image implements Picture
 		byte colorByteCode = mode.getByteCode();
 		
 		stream.write(new byte[] {'i', 'm', 'g', '\n'});
-		stream.writeByte(colorByteCode);
+		
 		stream.writeInt(width);
 		stream.writeInt(height);
+		stream.writeByte(colorByteCode);
+		
 		stream.write(data);
 	}
 	

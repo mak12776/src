@@ -5,12 +5,6 @@ public class IntVector
 	public IntPoint coor1;
 	public IntPoint coor2;
 	
-	public IntVector()
-	{
-		this.coor1 = new IntPoint();
-		this.coor2 = new IntPoint();
-	}
-	
 	public IntVector(IntPoint coor1, IntPoint coor2)
 	{
 		this.coor1 = coor1;

@@ -15,6 +15,7 @@ def img2png(infile, outfile):
     if magic != IMG_MAGIC:
         raise FileStructureError(
             'invalid file magic number: {!r}'.format(magic))
+
     width = read_int(infile, 4, False)
     height = read_int(infile, 4, False)
 
