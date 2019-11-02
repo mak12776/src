@@ -8,8 +8,12 @@ struct bm_header
     uint8_t info;
 } __attribute__((packed));
 
-#define GET_ADDRESS_SIZE(header) (((header).info & 0x0C) >> 2)
-#define GET_REGISTER_SIZE(header) ((header).info & 0x03)
+#define GET_ARCHITECT(header) (header).info
+
+#define ARCH_32BIT
+
+#define GET_ADDRESS_SIZE(header) (((header).info & 0b1100) >> 2)
+#define GET_REGISTER_SIZE(header) ((header).info & 0b0011)
 
 const char *get_size_string(uint8_t a)
 {
