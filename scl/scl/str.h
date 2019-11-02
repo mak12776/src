@@ -22,7 +22,7 @@ bool chr_in(char ch, const char *string)
     return false;
 }
 
-// find
+// find index
 
 static inline
 size_t find_test_index(char *pntr, size_t start, size_t end,
@@ -41,23 +41,8 @@ size_t find_test_index(char *pntr, size_t start, size_t end,
 }
 
 static inline
-size_t rfind_test_index(char *pntr, size_t start, size_t end,
-    int (*test) (int ch))
-{
-    size_t index = start;
-    while (index > start)
-    {
-        index -= 1;
-        if (test(pntr[index]))
-        {
-            return index;
-        }
-    }
-    return end;
-}
-
-static inline
-size_t find_chr_index(char *pntr, size_t start, size_t end, const char *string)
+size_t find_chr_index(char *pntr, size_t start, size_t end,
+    const char *string)
 {
     size_t index = start;
     while (index < end)
@@ -67,21 +52,6 @@ size_t find_chr_index(char *pntr, size_t start, size_t end, const char *string)
             return index;
         }
         index += 1;
-    }
-    return end;
-}
-
-static inline
-size_t rfind_chr_index(char *pntr, size_t start, size_t end, const char *string)
-{
-    size_t index = end;
-    while (index > start)
-    {
-        index -= 1;
-        if (chr_in(pntr[index], string))
-        {
-            return index;
-        }
     }
     return end;
 }
@@ -98,6 +68,60 @@ size_t find_chr_not_index(char *pntr, size_t start, size_t end,
             return index;
         }
         index += 1;
+    }
+    return end;
+}
+
+// find length
+
+static inline
+size_t find_test_length(char *pntr, size_t length, int (*test) (int ch))
+{
+    return find_test_index(pntr, 0, length, test);
+}
+
+static inline
+size_t find_chr_length(char *pntr, size_t length, const char *string)
+{
+    return find_chr_index(pntr, 0, length, string);
+}
+
+static inline
+size_t find_chr_not_length(char *pntr, size_t length, const char *string)
+{
+    return find_chr_not_index(pntr, 0, length, string);
+}
+
+// rfind index
+
+static inline
+size_t rfind_test_index(char *pntr, size_t start, size_t end,
+    int (*test) (int ch))
+{
+    size_t index = end;
+    while (index > start)
+    {
+        index -= 1;
+        if (test(pntr[index]))
+        {
+            return index;
+        }
+    }
+    return end;
+}
+
+static inline
+size_t rfind_chr_index(char *pntr, size_t start, size_t end,
+    const char *string)
+{
+    size_t index = end;
+    while (index > start)
+    {
+        index -= 1;
+        if (chr_in(pntr[index], string))
+        {
+            return index;
+        }
     }
     return end;
 }

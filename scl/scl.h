@@ -82,12 +82,21 @@
 #include "scl/error.h"
 #include "scl/math.h"
 #include "scl/random.h"
+
+#ifdef SCL_USE_UNSIGNED_CHAR
+#define CHAR unsigned char
+#else
+#define CHAR char
+#endif
+
 #include "scl/io.h"
 #include "scl/str.h"
 
 #ifndef SCL_NO_TYPES
 #include "scl/types.h"
 #endif
+
+#undef CHAR
 
 #undef SCL_DLL_EXPORT
 

@@ -47,19 +47,6 @@ size_t safe_fwrite(void *pntr, size_t size, FILE *file)
 }
 
 static inline
-size_t fwrite_index(char *pntr, size_t start, size_t end, FILE *file)
-{
-    return fwrite(pntr, 1, end - start, file);
-}
-
-static inline
-size_t fwrite_length(char *pntr, size_t length, FILE *file)
-{
-    return fwrite(pntr, 1, length, file);
-}
-
-
-static inline
 long get_file_size(FILE *file, int *error)
 {
     long file_size;
@@ -86,7 +73,7 @@ long get_file_size(FILE *file, int *error)
 }
 
 static inline
-void read_file(FILE *file, char **buffer, size_t *size, int *error)
+void read_file(FILE *file, CHAR **buffer, size_t *size, int *error)
 {
     long file_size;
     size_t read_number;
@@ -107,7 +94,7 @@ void read_file(FILE *file, char **buffer, size_t *size, int *error)
         #error LONG_MAX is greater than SIZE_MAX.
     #endif
 
-    *buffer = (char *)malloc(file_size);
+    *buffer = (CHAR *)malloc(file_size);
     if (!(*buffer))
     {
         *error = ERROR_NO_MEMORY;
@@ -125,7 +112,7 @@ void read_file(FILE *file, char **buffer, size_t *size, int *error)
 }
 
 static inline
-void read_file_name(char *name, char **buffer, size_t *size, int *error)
+void read_file_name(char *name, CHAR **buffer, size_t *size, int *error)
 {
     FILE *file;
 

@@ -1,7 +1,7 @@
 
 typedef struct
 {
-    char *pntr;
+    CHAR *pntr;
     size_t size;
 } buffer_t;
 
@@ -17,7 +17,9 @@ typedef struct
     size_t total;
 } lines_t;
 
-// function declarations
+// ** function declarations
+
+// buffer
 
 static inline
 void buffer_read_file(buffer_t *buffer, FILE *file);
@@ -32,12 +34,19 @@ static inline
 void buffer_split_lines(buffer_t *buffer, lines_t *lines);
 
 static inline
-size_t buffer_write_view(buffer *buffer, buffer_view_t *view);
+size_t buffer_write_view(buffer_t *buffer, buffer_view_t *view, FILE *file);
+
+static inline
+size_t buffer_write_lines(buffer_t *buffer, lines_t *lines, FILE *file);
+
+// lines
 
 static inline
 void lines_initialize_total(lines_t *lines, size_t total);
 
-// function definitions
+// ** function definitions
+
+// buffer
 
 static inline
 void buffer_read_file(buffer_t *buffer, FILE *file)
@@ -179,10 +188,44 @@ loop:
 }
 
 static inline
-size_t buffer_write_view(buffer *buffer, buffer_view_t *view)
+size_t buffer_write_view(buffer_t *buffer, buffer_view_t *view, FILE *file)
 {
-    
+    return fwrite(buffer->pntr + view->start, 1, view->end - view->start,
+        file);
 }
+
+static inline
+size_t buffer_write_lines(buffer_t *buffer, lines_t *lines, FILE *file)
+{
+    size_t write_number;
+
+    for (size_t i = 0; i < lines->total; i += 1)
+    {
+        printf("%4I64u" ": ", i + 1);
+        write_number += buffer_write_view(buffer, lines->pntr + i, stdout);
+    }
+    return write_number;
+}
+
+// buffer view
+
+static inline
+size_t buffer_view_find_test(buffer_view_t view, CHAR *pntr,
+    int (*test) (int ch))
+{
+    size_t index = view.start;
+    while (index < view.end)
+    {
+        if (test(pntr[index]))
+        {
+            return index;
+        }
+        index += 1;
+    }
+    return view.end;
+}
+
+// lines
 
 static inline
 void lines_initialize_total(lines_t *lines, size_t total)
