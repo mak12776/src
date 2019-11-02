@@ -19,7 +19,7 @@ public class ImageGenerators
 			@Override
 			public void map(int x, int y, byte[] data, int offset) 
 			{
-				data[offset] = (byte) (MathTools.inverseDistanceFraction(x, y, point.x, point.y, maxDist) * 256);
+				data[offset] = (byte) (MathTools.inverseDistanceFraction(x, y, point.x, point.y, maxDist) * 255);
 			}
 		});
 		

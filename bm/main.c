@@ -46,7 +46,7 @@ int main(int argc, char **argv)
         return EXIT_ERROR;
     }
 
-    // TODO: check header info
+#warning TODO: check header info
 
     unsigned char *buffer = malloc(BM_BUFFER_SIZE);
     if (!buffer)
@@ -72,8 +72,8 @@ int main(int argc, char **argv)
 
     int32_t eax, ebx, ecx, edx;
 
-    uchar *end = buffer + BUFFER_SIZE;
-    uchar *pntr = buffer;
+    unsigned char *end = buffer + BM_BUFFER_SIZE;
+    unsigned char *ip = buffer;
 
     while (ip != end)
     {

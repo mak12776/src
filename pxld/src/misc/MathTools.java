@@ -2,6 +2,8 @@ package misc;
 
 public class MathTools 
 {
+	// minimum & maximum
+	
 	public static double min(double a, double... others)
 	{
 		double min = a;
@@ -45,6 +47,8 @@ public class MathTools
 		}
 		return max;
 	}
+	
+	// point calculations
 	
 	public static double distance(int x1, int y1, int x2, int y2)
 	{
