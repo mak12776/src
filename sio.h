@@ -23,10 +23,7 @@ typedef struct
     size_t total;
 } lines_t;
 
-typedef struct
-{
-    buffer_t buffer;
-    lines_t lines;
-} buffer_lines_t;
+static inline
+void read_file()
 
 #endif // SIO_H

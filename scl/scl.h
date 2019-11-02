@@ -15,6 +15,13 @@
 #include <errno.h>
 #include <time.h>
 
+/*
+*   useful macros:
+*       SCL_SAFE
+*       SCL_NO_TYPES
+*       SCL_CHECK_LIMITS
+*/
+
 #ifndef SCL_SAFE
 #define SCL_SAFE 1
 #endif
@@ -76,6 +83,10 @@
 #include "scl/random.h"
 #include "scl/io.h"
 #include "scl/str.h"
+
+#ifndef SCL_NO_TYPES
+#include "scl/types.h"
+#endif
 
 #undef SCL_DLL_EXPORT
 

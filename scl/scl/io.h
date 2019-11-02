@@ -36,6 +36,30 @@ long safe_ftell(FILE *file)
 }
 
 static inline
+size_t safe_fwrite(void *pntr, size_t size, FILE *file)
+{
+    if (fwrite(pntr, 1, size, file) != size)
+    {
+        error = ERROR_IO;
+        return 0;
+    }
+    return size;
+}
+
+static inline
+size_t fwrite_index(char *pntr, size_t start, size_t end, FILE *file)
+{
+    return fwrite(pntr, 1, end - start, file);
+}
+
+static inline
+size_t fwrite_length(char *pntr, size_t length, FILE *file)
+{
+    return fwrite(pntr, 1, length, file);
+}
+
+
+static inline
 long get_file_size(FILE *file, int *error)
 {
     long file_size;
@@ -115,6 +139,8 @@ void read_file_name(char *name, char **buffer, size_t *size, int *error)
     read_file(file, buffer, size, error);
     fclose(file);
 }
+
+#if 0
 
 static inline
 void split_lines(char *buffer, size_t size, size_t **lines, size_t *total,
@@ -197,25 +223,4 @@ void split_lines(char *buffer, size_t size, size_t **lines, size_t *total,
 
 }
 
-static inline
-size_t safe_fwrite(void *pntr, size_t size, FILE *file)
-{
-    if (fwrite(pntr, 1, size, file) != size)
-    {
-        error = ERROR_IO;
-        return 0;
-    }
-    return size;
-}
-
-static inline
-size_t fwrite_index(char *pntr, size_t start, size_t end, FILE *file)
-{
-    return fwrite(pntr, 1, end - start, file);
-}
-
-static inline
-size_t fwrite_length(char *pntr, size_t length, FILE *file)
-{
-    return fwrite(pntr, 1, length, file);
-}
+#endif // #if 0
