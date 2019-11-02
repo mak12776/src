@@ -13,11 +13,13 @@
 
 #define ERROR_MAX 0xFF
 
-
 int error = NO_ERROR;
 
 struct
 {
+    FILE *file;
+    // usage: ERROR_FSEEK, ERROR_FTELL
+
     const char *file_name;
     // usage: ERROR_FOPEN, ERROR_ZERO_FILE_SIZE,
     //        ERROR_IO

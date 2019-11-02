@@ -7,13 +7,9 @@
     ({ typeof (a) _a = (a); typeof(min) _min = min; typeof(max) _max = max; \
     _a < _min ? _min : (_a > _max ? _max : _a); })
 
-#define mul(a, b) \
-    ({ typeof(a) __result; if (__builtin_mul_overflow(a, b, &__result)) \
-    { error = ERROR_BAD_ARGUMENTS; __result = 0; } __result; })
-
-#define add(a, b) \
-    ({ typeof(a) __result; if (__builtin_add_overflow(a, b, &__result)) \
-    { error = ERROR_BAD_ARGUMENTS; __result = 0; } __result; })
+#define check_overflow(func, a, b) \
+    ({ typeof(a) __result; (__builtin_ ## func ## _overflow(a, b, &__result)) \
+    ? (error = ERROR_INT_OVERFLOW, 0) : __result; })
 
 static inline
 size_t max_size(uint8_t number, ...)

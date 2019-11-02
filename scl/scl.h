@@ -18,8 +18,9 @@
 /*
 *   useful macros:
 *       SCL_SAFE
-*       SCL_NO_TYPES
 *       SCL_CHECK_LIMITS
+*
+*       SCL_NO_TYPES
 */
 
 #ifndef SCL_SAFE
