@@ -35,6 +35,12 @@ struct
 
 } error_info;
 
+static inline
+void clear_error()
+{
+    error = NO_ERROR;
+}
+
 
 static inline
 char *str_error(int error)

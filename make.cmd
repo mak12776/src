@@ -6,6 +6,6 @@ gcc main.c -o main
 goto end
 
 :make_bm
-gcc -Iscl bm\bm.c -o bm
+gcc -Iscl bm\main.c -o bm
 
 :end

@@ -64,10 +64,25 @@ size_t safe_get_file_size(FILE *file)
 static inline
 size_t safe_fwrite(void *pntr, size_t size, FILE *file)
 {
-    if (fwrite(pntr, 1, size, file) != size)
+    size_t write_number;
+
+    write_number = fwrite(pntr, 1, size, file);
+    if (write_number != size)
     {
         error = ERROR_IO;
-        return 0;
     }
-    return size;
+    return write_number;
+}
+
+static inline
+size_t safe_fread(void *pntr, size_t size, FILE *file)
+{
+    size_t read_number;
+
+    read_number = fread(pntr, 1, size, file);
+    if (read_number != size)
+    {
+        error = ERROR_IO;
+    }
+    return read_number;
 }

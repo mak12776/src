@@ -8,6 +8,30 @@
 
 #define string_cmp(string, pntr) memcmp(pntr, string, STRLEN(string))
 
+#define STRING_BUFFER_SIZE 1024
+char string_buffer[STRING_BUFFER_SIZE];
+
+static inline
+const char *format_human_size(size_t bytes)
+{
+	char *suffix[] = {"B", "KB", "MB", "GB", "TB"};
+	char length = sizeof(suffix) / sizeof(suffix[0]);
+
+	int i = 0;
+	double double_bytes = bytes;
+
+    while ((bytes / 1024) > 0 && i < length - 1)
+    {
+        i += 1;
+        bytes /= 1024;
+        double_bytes /= 1024.0;
+    }
+
+	snprintf(string_buffer, STRING_BUFFER_SIZE,
+        "%.02lf %s", double_bytes, suffix[i]);
+	return string_buffer;
+}
+
 static inline
 bool chr_in(char ch, const char *string)
 {
