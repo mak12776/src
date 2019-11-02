@@ -1,0 +1,7 @@
+
+"image\n"
+
+image width: 4 byte
+image height: 4 byte
+color mode: 1 byte = (01 - RGB | 00 - Gray Scale) & (02 - has alpha channel)
+pixel datas: (width * height * color_width) byte
