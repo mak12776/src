@@ -18,7 +18,7 @@ int error = NO_ERROR;
 struct
 {
     FILE *file;
-    // usage: ERROR_FSEEK, ERROR_FTELL
+    // usage: ERROR_FSEEK, ERROR_FTELL, ERROR_IO
 
     const char *file_name;
     // usage: ERROR_FOPEN, ERROR_ZERO_FILE_SIZE,

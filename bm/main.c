@@ -84,5 +84,6 @@ int main(int argc, char **argv)
             return EXIT_ERROR;
         }
     }
+    
     return EXIT_NORMAL;
 }

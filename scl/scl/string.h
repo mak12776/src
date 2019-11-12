@@ -33,17 +33,17 @@ const char *format_human_size(size_t bytes)
 }
 
 static inline
-bool chr_in(char ch, const char *string)
+int chr_in(char ch, const char *string)
 {
     while (*string)
     {
         if (ch == (*string))
         {
-            return true;
+            return 1;
         }
         string++;
     }
-    return false;
+    return 0;
 }
 
 // find index

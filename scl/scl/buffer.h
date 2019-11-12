@@ -13,6 +13,13 @@ typedef struct
 
 typedef struct
 {
+    buffer_t buffer;
+    buffer_view_t *lines;
+    size_t total;
+} buffer_lines_t;
+
+typedef struct
+{
     buffer_view_t *pntr;
     size_t total;
 } lines_t;
@@ -223,6 +230,38 @@ size_t buffer_view_find_test(buffer_view_t view, CHAR *pntr,
         index += 1;
     }
     return view.end;
+}
+
+static inline
+size_t buffer_view_rfind_test(buffer_view_t view, CHAR *pntr,
+    int (*test) (int ch))
+{
+    size_t index = view.end;
+    while (index > view.start)
+    {
+        index -= 1;
+        if (test(pntr[index]))
+        {
+            return index;
+        }
+    }
+    return view.start;
+}
+
+static inline
+size_t buffer_view_find_chr(buffer_view_t view, CHAR *pntr,
+    const CHAR *string)
+{
+    int find_chr(int ch) { return chr_in(ch, string); }
+    return buffer_view_find_test(view, pntr, &find_chr);
+}
+
+static inline
+size_t buffer_view_rfind_chr(buffer_view_t view, CHAR *pntr,
+    const CHAR *string)
+{
+    int find_chr(int ch) { return chr_in(ch, string); }
+    return buffer_view_rfind_test(view, pntr, &find_chr);
 }
 
 // lines
